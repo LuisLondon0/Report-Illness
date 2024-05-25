@@ -1,0 +1,63 @@
+
+-- Inserción de datos en la tabla 'Enfermedad'
+INSERT INTO Enfermedad (id, nombre, descripcion, urgencia, transmisibilidad, periodo_incubacion, vacuna_disponible, tratamiento_disponible)
+VALUES 
+(1, 'Influenza', 'Gripe estacional', 'Moderada', 'Alta', '1-4 días', true, true),
+(2, 'COVID-19', 'Coronavirus', 'Alta', 'Alta', '2-14 días', true, true),
+(3, 'Varicela', 'Virus de la varicela-zoster', 'Moderada', 'Alta', '10-21 días', true, true),
+(4, 'Dengue', 'Virus del dengue', 'Alta', 'Alta', '4-10 días', false, true),
+(5, 'Sarampión', 'Virus del sarampión', 'Alta', 'Alta', '10-12 días', true, true);
+
+-- Inserción de datos en la tabla 'Ubicacion'
+INSERT INTO Ubicacion (id, nombres, latitud, longitud)
+VALUES 
+(1, 'Hospital Central', 40.712776, -74.005974),
+(2, 'Clínica Norte', 34.052235, -118.243683),
+(3, 'Centro de Salud Sur', 51.507351, -0.127758),
+(4, 'Hospital Este', 35.689487, 139.691711),
+(5, 'Clínica Oeste', 48.856613, 2.352222);
+
+-- Inserción de datos en la tabla 'Persona'
+INSERT INTO Persona (id, nombres, apellidos, contacto)
+VALUES 
+(1, 'Juan', 'Pérez', 'juan.perez@example.com'),
+(2, 'Ana', 'García', 'ana.garcia@example.com'),
+(3, 'Luis', 'Martínez', 'luis.martinez@example.com'),
+(4, 'María', 'Rodríguez', 'maria.rodriguez@example.com'),
+(5, 'Carlos', 'López', 'carlos.lopez@example.com');
+
+-- Inserción de datos en la tabla 'Medico'
+INSERT INTO Medico (id, nombres, apellidos, contacto, especialidad)
+VALUES 
+(1, 'Dr. Pedro', 'Sánchez', 'pedro.sanchez@example.com', 'Epidemiología'),
+(2, 'Dr. Laura', 'Fernández', 'laura.fernandez@example.com', 'Medicina Interna'),
+(3, 'Dr. Jorge', 'Gómez', 'jorge.gomez@example.com', 'Pediatría'),
+(4, 'Dr. Sofía', 'Morales', 'sofia.morales@example.com', 'Cardiología'),
+(5, 'Dr. Andrés', 'Torres', 'andres.torres@example.com', 'Dermatología');
+
+-- Inserción de datos en la tabla 'Paciente'
+INSERT INTO Paciente (id, nombres, apellidos, contacto, genero, edad, historial_medico)
+VALUES 
+(1, 'Luis', 'Martínez', 'luis.martinez@example.com', 'Masculino', 30, NULL),
+(2, 'Ana', 'García', 'ana.garcia@example.com', 'Femenino', 25, NULL),
+(3, 'María', 'Rodríguez', 'maria.rodriguez@example.com', 'Femenino', 28, NULL),
+(4, 'Carlos', 'López', 'carlos.lopez@example.com', 'Masculino', 35, NULL),
+(5, 'Juan', 'Pérez', 'juan.perez@example.com', 'Masculino', 40, NULL);
+
+-- Inserción de datos en la tabla 'HistorialMedico'
+INSERT INTO HistorialMedico (id, paciente, condiciones_salud, alergias, medicamentos, procedimientos, pruebas_medicas, consultas_previas)
+VALUES 
+(1, 1, 'Asma', 'Polen', 'Inhalador', 'Ninguno', 'Espirometría', 'Varias'),
+(2, 2, 'Diabetes', 'Ninguna', 'Insulina', 'Ninguno', 'Hemoglobina glicosilada', 'Varias'),
+(3, 3, 'Hipertensión', 'Ninguna', 'Antihipertensivos', 'Ninguno', 'Medición de presión arterial', 'Varias'),
+(4, 4, 'Alergia', 'Polvo', 'Antihistamínicos', 'Ninguno', 'Pruebas de alergia', 'Varias'),
+(5, 5, 'Colesterol alto', 'Ninguna', 'Estatinas', 'Ninguno', 'Perfil lipídico', 'Varias');
+
+-- Inserción de datos en la tabla 'CasoNotificado'
+INSERT INTO CasoNotificado (id, fecha_notificacion, paciente, medico, enfermedad, ubicacion)
+VALUES 
+(1, '2023-01-01', 1, 1, 1, 1),
+(2, '2023-02-01', 2, 2, 2, 2),
+(3, '2023-03-01', 3, 3, 3, 3),
+(4, '2023-04-01', 4, 4, 4, 4),
+(5, '2023-05-01', 5, 5, 5, 5);
