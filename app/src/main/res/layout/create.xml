@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Campo ID -->
+        <EditText
+            android:id="@+id/editTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter ID"
+            android:inputType="number" />
+
+        <!-- Campo Nombre -->
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Nombre"
+            android:inputType="textPersonName"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Apellidos -->
+        <EditText
+            android:id="@+id/editTextApellidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Apellidos"
+            android:inputType="textPersonName"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Contacto -->
+        <EditText
+            android:id="@+id/editTextContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Contacto"
+            android:inputType="text"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Género -->
+        <Spinner
+            android:id="@+id/spinnerGenero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/genero_array"/>
+
+        <!-- Campo Cumpleaños -->
+        <EditText
+            android:id="@+id/editTextCumpleanos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Cumpleaños"
+            android:inputType="date"
+            android:layout_marginTop="16dp"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPatients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSubmit"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
