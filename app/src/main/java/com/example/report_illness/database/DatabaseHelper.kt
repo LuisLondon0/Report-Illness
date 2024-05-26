@@ -4,7 +4,6 @@ import android.util.Log
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
-import java.sql.Statement
 
 object DatabaseHelper {
 
@@ -14,8 +13,8 @@ object DatabaseHelper {
             return null
         }
         try {
-            val statement: Statement = conn.createStatement()
-            return statement.executeQuery(query)
+            val statement: PreparedStatement = conn.prepareStatement(query)
+            return statement.executeQuery()
         } catch (e: SQLException) {
             Log.e("Error: ", e.message ?: "Unknown error")
             return null
@@ -31,10 +30,8 @@ object DatabaseHelper {
             }
             preparedStatement.executeUpdate()
         } catch (e: SQLException) {
-            Log.e("Error: ", e.message!!)
+            Log.e("Error: ", e.message ?: "Unknown error")
             0
-        } finally {
-            conn.close()
         }
     }
 }

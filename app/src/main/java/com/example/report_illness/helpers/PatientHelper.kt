@@ -4,6 +4,7 @@ import com.example.report_illness.database.ConnectionDB
 import com.example.report_illness.database.DatabaseHelper
 import com.example.report_illness.models.Patient
 import java.sql.ResultSet
+import java.sql.SQLException
 
 object PatientHelper {
 
@@ -17,7 +18,12 @@ object PatientHelper {
             patient.birthDate,
             patient.gender
         )
-        return DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
+        return try {
+            DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            false
+        }
     }
 
     fun updatePatient(patient: Patient, connectionDB: ConnectionDB): Boolean {
@@ -30,12 +36,22 @@ object PatientHelper {
             patient.gender,
             patient.id
         )
-        return DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
+        return try {
+            DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            false
+        }
     }
 
     fun deletePatient(id: Int, connectionDB: ConnectionDB): Boolean {
         val query = "DELETE FROM Patients WHERE id = ?"
-        return DatabaseHelper.executeUpdate(query, listOf(id), connectionDB) > 0
+        return try {
+            DatabaseHelper.executeUpdate(query, listOf(id), connectionDB) > 0
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            false
+        }
     }
 
     fun getAllPatients(connectionDB: ConnectionDB): List<Patient> {

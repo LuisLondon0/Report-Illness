@@ -10,7 +10,7 @@ object ConnectionDB {
     private var connection: Connection? = null
 
     init {
-        // Initialize the connection upon the first access
+        // Inicializa la conexión al ser accedida por primera vez
         getConnection()
     }
 
@@ -24,19 +24,19 @@ object ConnectionDB {
         val user = "admin_report"
         val password = "HNCkda32"
 
-        var connString: String
+        val connString: String
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
             connString = "jdbc:sqlserver://$host:1433;database=$dbname;user=$user@report-illness;password=$password;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
             conn = DriverManager.getConnection(connString)
-            Log.e("Success: ", "Connected to database")
+            Log.e("Success: ", "Conectado a la base de datos")
         } catch (ex: SQLException) {
-            Log.e("Error: ", ex.message!!)
+            Log.e("Error: ", ex.message ?: "SQLException")
         } catch (ex1: ClassNotFoundException) {
-            Log.e("Error: ", ex1.message!!)
+            Log.e("Error: ", ex1.message ?: "ClassNotFoundException")
         } catch (ex2: Exception) {
-            Log.e("Error: ", ex2.message!!)
+            Log.e("Error: ", ex2.message ?: "Exception")
         }
 
         connection = conn

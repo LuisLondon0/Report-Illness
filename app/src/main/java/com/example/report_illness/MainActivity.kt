@@ -13,6 +13,7 @@ import com.example.report_illness.adapters.PatientAdapter
 import com.example.report_illness.database.ConnectionDB
 import com.example.report_illness.helpers.PatientHelper
 import com.example.report_illness.models.Patient
+import java.sql.SQLException
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
@@ -34,9 +35,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupPatientList() {
-        val allPatients = PatientHelper.getAllPatients(ConnectionDB)
-        patientAdapter = PatientAdapter(allPatients)
-        recyclerViewPatients.adapter = patientAdapter
+        try {
+            val allPatients = PatientHelper.getAllPatients(ConnectionDB)
+            patientAdapter = PatientAdapter(allPatients)
+            recyclerViewPatients.adapter = patientAdapter
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al cargar la lista de pacientes", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupSubmitButton() {
@@ -87,27 +93,36 @@ class MainActivity : AppCompatActivity() {
             val patient = Patient(id, nombre, apellidos, contacto, cumpleanos, genero)
 
             // Insertar o actualizar el paciente según si ya existe o no
-            if (PatientHelper.getPatientById(id, ConnectionDB) != null) {
-                if (PatientHelper.updatePatient(patient, ConnectionDB)) {
-                    Toast.makeText(this, "Paciente actualizado correctamente", Toast.LENGTH_SHORT).show()
+            try {
+                if (PatientHelper.getPatientById(id, ConnectionDB) != null) {
+                    if (PatientHelper.updatePatient(patient, ConnectionDB)) {
+                        Toast.makeText(this, "Paciente actualizado correctamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Error al actualizar el paciente", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(this, "Error al actualizar el paciente", Toast.LENGTH_SHORT).show()
+                    if (PatientHelper.insertPatient(patient, ConnectionDB)) {
+                        Toast.makeText(this, "Paciente insertado correctamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Error al insertar el paciente", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            } else {
-                if (PatientHelper.insertPatient(patient, ConnectionDB)) {
-                    Toast.makeText(this, "Paciente insertado correctamente", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Error al insertar el paciente", Toast.LENGTH_SHORT).show()
-                }
+                // Actualizar la lista de pacientes después de insertar o actualizar
+                updatePatientList()
+            } catch (e: SQLException) {
+                e.printStackTrace()
+                Toast.makeText(this, "Error al insertar o actualizar el paciente", Toast.LENGTH_SHORT).show()
             }
-
-            // Actualizar la lista de pacientes después de insertar o actualizar
-            updatePatientList()
         }
     }
 
     private fun updatePatientList() {
-        val updatedPatients = PatientHelper.getAllPatients(ConnectionDB)
-        patientAdapter.updateList(updatedPatients)
+        try {
+            val updatedPatients = PatientHelper.getAllPatients(ConnectionDB)
+            patientAdapter.updateList(updatedPatients)
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al actualizar la lista de pacientes", Toast.LENGTH_SHORT).show()
+        }
     }
 }
