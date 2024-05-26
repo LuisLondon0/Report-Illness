@@ -4,12 +4,11 @@ import com.example.report_illness.database.ConnectionDB
 import com.example.report_illness.database.DatabaseHelper
 import com.example.report_illness.models.Patient
 import java.sql.ResultSet
-import java.sql.SQLException
 
 object PatientHelper {
 
     fun insertPatient(patient: Patient, connectionDB: ConnectionDB): Boolean {
-        val query = "INSERT INTO Patients (id, names, lastnames, contact, birthday, gender) VALUES (?, ?, ?, ?, ?, ?)"
+        val query = "INSERT INTO Patient (id, names, lastnames, contact, birthday, gender) VALUES (?, ?, ?, ?, ?, ?)"
         val parameters = listOf<Any>(
             patient.id,
             patient.names,
@@ -18,16 +17,11 @@ object PatientHelper {
             patient.birthDate,
             patient.gender
         )
-        return try {
-            DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            false
-        }
+        return DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
     }
 
     fun updatePatient(patient: Patient, connectionDB: ConnectionDB): Boolean {
-        val query = "UPDATE Patients SET names = ?, lastNames = ?, contact = ?, birthDate = ?, gender = ? WHERE id = ?"
+        val query = "UPDATE Patient SET names = ?, lastNames = ?, contact = ?, birthDate = ?, gender = ? WHERE id = ?"
         val parameters = listOf<Any>(
             patient.names,
             patient.lastNames,
@@ -36,26 +30,16 @@ object PatientHelper {
             patient.gender,
             patient.id
         )
-        return try {
-            DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            false
-        }
+        return DatabaseHelper.executeUpdate(query, parameters, connectionDB) > 0
     }
 
     fun deletePatient(id: Int, connectionDB: ConnectionDB): Boolean {
-        val query = "DELETE FROM Patients WHERE id = ?"
-        return try {
-            DatabaseHelper.executeUpdate(query, listOf(id), connectionDB) > 0
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            false
-        }
+        val query = "DELETE FROM Patient WHERE id = ?"
+        return DatabaseHelper.executeUpdate(query, listOf(id), connectionDB) > 0
     }
 
     fun getAllPatients(connectionDB: ConnectionDB): List<Patient> {
-        val query = "SELECT * FROM Patients"
+        val query = "SELECT * FROM Patient"
         val resultSet = DatabaseHelper.executeQuery(query, connectionDB)
         val patients = mutableListOf<Patient>()
         resultSet?.use { rs ->
@@ -68,7 +52,7 @@ object PatientHelper {
     }
 
     fun getPatientById(id: Int, connectionDB: ConnectionDB): Patient? {
-        val query = "SELECT * FROM Patients WHERE id = ?"
+        val query = "SELECT * FROM Patient WHERE id = ?"
         val resultSet = DatabaseHelper.executeQuery(query, connectionDB)
         resultSet?.use { rs ->
             if (rs.next()) {
@@ -82,9 +66,9 @@ object PatientHelper {
         return Patient(
             resultSet.getInt("id"),
             resultSet.getString("names"),
-            resultSet.getString("lastNames"),
+            resultSet.getString("lastnames"),
             resultSet.getString("contact"),
-            resultSet.getString("birthDate"),
+            resultSet.getString("birthday"),
             resultSet.getString("gender")
         )
     }

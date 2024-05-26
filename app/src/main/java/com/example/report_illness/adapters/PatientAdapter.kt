@@ -1,5 +1,6 @@
 package com.example.report_illness.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class PatientAdapter(private var patients: List<Patient>) : RecyclerView.Adapter
 
     override fun getItemCount() = patients.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newPatients: List<Patient>) {
         patients = newPatients
         notifyDataSetChanged()

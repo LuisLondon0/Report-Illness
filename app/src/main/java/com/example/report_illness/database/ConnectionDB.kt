@@ -10,7 +10,7 @@ object ConnectionDB {
     private var connection: Connection? = null
 
     init {
-        // Inicializa la conexión al ser accedida por primera vez
+        // Initialize the connection upon the first access
         getConnection()
     }
 
@@ -24,19 +24,19 @@ object ConnectionDB {
         val user = "admin_report"
         val password = "HNCkda32"
 
-        val connString: String
+        var connString: String
 
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
-            connString = "jdbc:sqlserver://$host:1433;database=$dbname;user=$user@report-illness;password=$password;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            connString = "jdbc:jtds:sqlserver://$host:1433;databaseName=$dbname;user=$user@report-illness;password=$password;encrypt=true;trustServerCertificate=true;ssl=require;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
             conn = DriverManager.getConnection(connString)
-            Log.e("Success: ", "Conectado a la base de datos")
+            Log.d("Success: ", "Connected to database")
         } catch (ex: SQLException) {
-            Log.e("Error: ", ex.message ?: "SQLException")
+            Log.e("Error: ", ex.message!!)
         } catch (ex1: ClassNotFoundException) {
-            Log.e("Error: ", ex1.message ?: "ClassNotFoundException")
+            Log.e("Error: ", ex1.message!!)
         } catch (ex2: Exception) {
-            Log.e("Error: ", ex2.message ?: "Exception")
+            Log.e("Error: ", ex2.message!!)
         }
 
         connection = conn

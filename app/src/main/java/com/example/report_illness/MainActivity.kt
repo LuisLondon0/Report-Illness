@@ -1,5 +1,6 @@
 package com.example.report_illness
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +14,6 @@ import com.example.report_illness.adapters.PatientAdapter
 import com.example.report_illness.database.ConnectionDB
 import com.example.report_illness.helpers.PatientHelper
 import com.example.report_illness.models.Patient
-import java.sql.SQLException
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
@@ -35,16 +35,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupPatientList() {
-        try {
-            val allPatients = PatientHelper.getAllPatients(ConnectionDB)
-            patientAdapter = PatientAdapter(allPatients)
-            recyclerViewPatients.adapter = patientAdapter
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            Toast.makeText(this, "Error al cargar la lista de pacientes", Toast.LENGTH_SHORT).show()
-        }
+        val allPatients = PatientHelper.getAllPatients(ConnectionDB)
+        patientAdapter = PatientAdapter(allPatients)
+        recyclerViewPatients.adapter = patientAdapter
     }
 
+    @SuppressLint("DefaultLocale")
     private fun setupSubmitButton() {
         val editTextId: EditText = findViewById(R.id.editTextId)
         val editTextNombre: EditText = findViewById(R.id.editTextNombre)
@@ -63,8 +59,10 @@ class MainActivity : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    // Update EditText with selected date
-                    editTextCumpleanos.setText("$selectedDay/${selectedMonth + 1}/$selectedYear")
+                    // Formatear la fecha
+                    val formattedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+                    // Establecer el texto en el EditText
+                    editTextCumpleanos.setText(formattedDate)
                 },
                 year, month, day
             )
@@ -93,36 +91,29 @@ class MainActivity : AppCompatActivity() {
             val patient = Patient(id, nombre, apellidos, contacto, cumpleanos, genero)
 
             // Insertar o actualizar el paciente según si ya existe o no
-            try {
-                if (PatientHelper.getPatientById(id, ConnectionDB) != null) {
-                    if (PatientHelper.updatePatient(patient, ConnectionDB)) {
-                        Toast.makeText(this, "Paciente actualizado correctamente", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "Error al actualizar el paciente", Toast.LENGTH_SHORT).show()
-                    }
+            if (PatientHelper.getPatientById(id, ConnectionDB) != null) {
+                if (PatientHelper.updatePatient(patient, ConnectionDB)) {
+                    Toast.makeText(this, "Paciente actualizado correctamente", Toast.LENGTH_SHORT).show()
                 } else {
-                    if (PatientHelper.insertPatient(patient, ConnectionDB)) {
-                        Toast.makeText(this, "Paciente insertado correctamente", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "Error al insertar el paciente", Toast.LENGTH_SHORT).show()
-                    }
+                    Toast.makeText(this, "Error al actualizar el paciente", Toast.LENGTH_SHORT).show()
                 }
-                // Actualizar la lista de pacientes después de insertar o actualizar
-                updatePatientList()
-            } catch (e: SQLException) {
-                e.printStackTrace()
-                Toast.makeText(this, "Error al insertar o actualizar el paciente", Toast.LENGTH_SHORT).show()
+            } else {
+                if (PatientHelper.insertPatient(patient, ConnectionDB)) {
+                    Toast.makeText(this, "Paciente insertado correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al insertar el paciente", Toast.LENGTH_SHORT).show()
+                }
             }
+
+            // Actualizar la lista de pacientes después de insertar o actualizar
+            updatePatientList()
         }
     }
 
     private fun updatePatientList() {
-        try {
-            val updatedPatients = PatientHelper.getAllPatients(ConnectionDB)
-            patientAdapter.updateList(updatedPatients)
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            Toast.makeText(this, "Error al actualizar la lista de pacientes", Toast.LENGTH_SHORT).show()
-        }
+        val updatedPatients = PatientHelper.getAllPatients(ConnectionDB)
+        patientAdapter.updateList(updatedPatients)
+        recyclerViewPatients.adapter = patientAdapter // Vuelve a asignar el adaptador al RecyclerView
     }
+
 }
