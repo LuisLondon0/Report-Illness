@@ -1,0 +1,189 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título con fondo azul -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bluePrimary"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Registrar_Paciente"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="#25707070" />
+
+        <!-- Campos de entrada -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_phone"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/Cedula"
+            app:startIconDrawable="@drawable/ic_cedula"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="phone"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_name"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/Nombre"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_lastname"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/LastName"
+            app:startIconDrawable="@drawable/ic_apellido"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_email"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/storeemail"
+            app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_Genero"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/Genero"
+            app:startIconDrawable="@drawable/ic_location"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_Genero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_Fecha_Nacimiento"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/Fecha_Nacimiento"
+            app:startIconDrawable="@drawable/ic_fechanacimiento"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_Fecha_Nacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/SubmitBtn"
+        android:layout_width="176dp"
+        android:layout_height="67dp"
+        android:layout_above="@+id/SubmitBtn3"
+        android:layout_marginStart="131dp"
+        android:layout_marginBottom="-70dp"
+        android:layout_toEndOf="@+id/SubmitBtn3"
+        android:backgroundTint="@color/blueAccent"
+        android:onClick="btnSubmit"
+        android:text="@string/submit1"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/SubmitBtn3"
+        android:layout_width="176dp"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="92dp"
+        android:backgroundTint="@color/blueAccent"
+        android:onClick="btnSubmit"
+        android:text="@string/submit2"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+</RelativeLayout>

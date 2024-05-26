@@ -2,4 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+
+
+    <color name="medical_blue">#0096D6</color>
+
+
+    <color name="orange">#FFA500</color>
+    <color name="Rojo">#FF004D</color>
+    <color name="Verde">#00FF6A</color>
+
+    <color name="bluePrimary">#2196F3</color>
+    <color name="bluePrimaryDark">#1976D2</color>
+    <color name="blueAccent">#03A9F4</color>
 </resources>
