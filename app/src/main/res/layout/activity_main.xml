@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Sección superior con el título "Report Illness" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bluePrimary"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Report Illness"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Botones para ir a diferentes secciones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/buttonPatients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pacientes"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/buttonDiseases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enfermedades"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/buttonLocations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubicaciones"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/buttonReportedCases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Casos Reportados"/>
+    </LinearLayout>
+
+</LinearLayout>

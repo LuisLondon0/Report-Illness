@@ -1,4 +1,3 @@
-<!-- item_patient.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -36,5 +35,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/buttonEditPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar"/>
+
+        <Button
+            android:id="@+id/buttonDeletePatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
 
 </LinearLayout>

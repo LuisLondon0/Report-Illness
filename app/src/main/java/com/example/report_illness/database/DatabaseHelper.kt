@@ -8,14 +8,17 @@ import java.sql.Statement
 
 object DatabaseHelper {
 
-    fun executeQuery(query: String, connectionDB: ConnectionDB): ResultSet? {
+    fun executeQuery(query: String, connectionDB: ConnectionDB, vararg params: Any): ResultSet? {
         val conn = connectionDB.dbConn() ?: run {
             Log.e("Error: ", "Check your internet connection")
             return null
         }
         try {
-            val statement: Statement = conn.createStatement()
-            return statement.executeQuery(query)
+            val preparedStatement: PreparedStatement = conn.prepareStatement(query)
+            for ((index, param) in params.withIndex()) {
+                preparedStatement.setObject(index + 1, param)
+            }
+            return preparedStatement.executeQuery()
         } catch (e: SQLException) {
             Log.e("Error: ", e.message ?: "Unknown error")
             return null

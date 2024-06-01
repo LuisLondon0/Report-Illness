@@ -5,6 +5,7 @@ import android.util.Log
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
+import com.example.report_illness.BuildConfig
 
 object ConnectionDB {
     private var connection: Connection? = null
@@ -19,15 +20,15 @@ object ConnectionDB {
         StrictMode.setThreadPolicy(policy)
 
         var conn: Connection? = null
-        val host = "report-illness.database.windows.net"
-        val dbname = "report-illness-db"
-        val user = "admin_report"
-        val password = "HNCkda32"
+        val host = BuildConfig.DB_HOST
+        val dbname = BuildConfig.DB_NAME
+        val user = BuildConfig.DB_USER
+        val password = BuildConfig.DB_PASSWORD
 
-        var connString: String
+        val connString: String
 
         try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            Class.forName("net.sourceforge.jtds.jdbc.Driver")
             connString = "jdbc:jtds:sqlserver://$host:1433;databaseName=$dbname;user=$user@report-illness;password=$password;encrypt=true;trustServerCertificate=true;ssl=require;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
             conn = DriverManager.getConnection(connString)
             Log.d("Success: ", "Connected to database")

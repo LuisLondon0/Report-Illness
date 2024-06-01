@@ -21,7 +21,7 @@ object PatientHelper {
     }
 
     fun updatePatient(patient: Patient, connectionDB: ConnectionDB): Boolean {
-        val query = "UPDATE Patient SET names = ?, lastNames = ?, contact = ?, birthDate = ?, gender = ? WHERE id = ?"
+        val query = "UPDATE Patient SET names = ?, lastNames = ?, contact = ?, birthday = ?, gender = ? WHERE id = ?"
         val parameters = listOf<Any>(
             patient.names,
             patient.lastNames,
@@ -53,7 +53,7 @@ object PatientHelper {
 
     fun getPatientById(id: Int, connectionDB: ConnectionDB): Patient? {
         val query = "SELECT * FROM Patient WHERE id = ?"
-        val resultSet = DatabaseHelper.executeQuery(query, connectionDB)
+        val resultSet = DatabaseHelper.executeQuery(query, connectionDB, id)
         resultSet?.use { rs ->
             if (rs.next()) {
                 return mapResultSetToPatient(rs)
