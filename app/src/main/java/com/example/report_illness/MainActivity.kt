@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.example.report_illness.R
-import com.example.report_illness.views.patient.ListActivity
+import com.example.report_illness.views.patient.ListActivity as PatientListActivity
+import com.example.report_illness.views.disease.ListActivity as DiseaseListActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,10 +16,14 @@ class MainActivity : AppCompatActivity() {
 
         val buttonPatients = findViewById<Button>(R.id.buttonPatients)
         buttonPatients.setOnClickListener {
-            val intent = Intent(this@MainActivity, ListActivity::class.java)
+            val intent = Intent(this@MainActivity, PatientListActivity::class.java)
             startActivity(intent)
         }
 
-        // Define OnClickListener for other buttons in a similar way
+        val buttonDiseases = findViewById<Button>(R.id.buttonDiseases)
+        buttonDiseases.setOnClickListener {
+            val intent = Intent(this@MainActivity, DiseaseListActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

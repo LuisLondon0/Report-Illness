@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Campo ID -->
+        <EditText
+            android:id="@+id/editTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter ID"
+            android:inputType="number" />
+
+        <!-- Campo Nombre -->
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Nombre"
+            android:inputType="textPersonName"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Descripción -->
+        <EditText
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Descripción"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Urgencia -->
+        <EditText
+            android:id="@+id/editTextUrgencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Urgencia"
+            android:inputType="text"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Vacuna -->
+        <CheckBox
+            android:id="@+id/checkBoxVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vacuna"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Tratamiento -->
+        <CheckBox
+            android:id="@+id/checkBoxTratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tratamiento"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Submit" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
