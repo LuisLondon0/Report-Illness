@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Campo ID -->
+        <EditText
+            android:id="@+id/editTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar ID"
+            android:inputType="number" />
+
+        <!-- Campo Nombre -->
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar Nombre"
+            android:inputType="textPersonName"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Latitud -->
+        <EditText
+            android:id="@+id/editTextLatitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar Latitud"
+            android:inputType="numberSigned|numberDecimal"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Longitud -->
+        <EditText
+            android:id="@+id/editTextLongitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar Longitud"
+            android:inputType="numberSigned|numberDecimal"
+            android:layout_marginTop="16dp" />
+
+        <!-- Campo Country ID -->
+        <Spinner
+            android:id="@+id/spinnerPaisId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancelar" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

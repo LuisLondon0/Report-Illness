@@ -9,6 +9,7 @@ import com.example.report_illness.R
 import com.example.report_illness.views.patient.ListActivity as PatientListActivity
 import com.example.report_illness.views.disease.ListActivity as DiseaseListActivity
 import com.example.report_illness.views.country.ListActivity as CountryListActivity
+import com.example.report_illness.views.city.ListActivity as CityListActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         val buttonCountries = findViewById<Button>(R.id.buttonCountries)
         buttonCountries.setOnClickListener {
             val intent = Intent(this@MainActivity, CountryListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonCities = findViewById<Button>(R.id.buttonCities)
+        buttonCities.setOnClickListener {
+            val intent = Intent(this@MainActivity, CityListActivity::class.java)
             startActivity(intent)
         }
 
