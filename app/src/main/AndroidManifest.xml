@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Report_Illness"
         tools:targetApi="31">
         <activity
+            android:name=".views.country.ListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.country.CreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.disease.ListActivity"
             android:exported="false" />
         <activity
@@ -33,6 +39,7 @@
             android:theme="@style/Theme.Report_Illness">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
