@@ -3,18 +3,17 @@ package com.example.report_illness.models
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Patient(
-    id: Int,
-    names: String,
-    lastNames: String,
-    contact: String,
-    var birthDate: String,
-    var gender: String
-) : Person(id, names, lastNames, contact) {
-    fun getFormattedBirthDate(): String {
-        val formatoEntrada = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+class ReportedCase(
+    var id: Int,
+    var reportedDate: String,
+    var patientId: Int,
+    var diseaseId: Int,
+    var cityId: Int
+) {
+    fun getFormattedReportedDate(): String {
+        val formatoEntrada = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.getDefault())
         val formatoSalida = SimpleDateFormat("yyyy-MMMM-dd", Locale.getDefault())
-        val fechaDate: Date? = formatoEntrada.parse(birthDate)
+        val fechaDate: Date? = formatoEntrada.parse(reportedDate)
         return if (fechaDate != null) {
             formatoSalida.format(fechaDate)
         } else {
@@ -23,4 +22,3 @@ class Patient(
         }
     }
 }
-

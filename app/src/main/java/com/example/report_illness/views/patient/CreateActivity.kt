@@ -54,7 +54,7 @@ class CreateActivity : AppCompatActivity() {
                 val generoIndex = generoArray.indexOf(patient.gender)
                 spinnerGenero.setSelection(generoIndex)
 
-                findViewById<EditText>(R.id.editTextCumpleanos).setText(patient.birthDate)
+                findViewById<EditText>(R.id.editTextCumpleanos).setText(patient.birthDate.substring(0, 10))
             } else {
                 Log.e("CreateActivity", "Patient not found for ID: $patientId")
                 Toast.makeText(this, "Patient not found", Toast.LENGTH_SHORT).show()

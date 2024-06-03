@@ -58,7 +58,15 @@
             android:id="@+id/buttonReportedCases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Casos Reportados"/>
+            android:text="Casos Reportados"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/buttonGraphs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Graficos"
+            android:layout_marginBottom="8dp"/>
     </LinearLayout>
 
 </LinearLayout>

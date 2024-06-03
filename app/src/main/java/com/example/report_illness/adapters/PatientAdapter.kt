@@ -50,7 +50,7 @@ class PatientAdapter(private var patients: List<Patient>) : RecyclerView.Adapter
             textViewPatientName.text = "${patient.names} ${patient.lastNames}"
             textViewPatientID.text = "ID: ${patient.id}"
             textViewPatientContact.text = "Contacto: ${patient.contact}"
-            textViewPatientBirthDate.text = "Fecha de Nacimiento: ${patient.birthDate}"
+            textViewPatientBirthDate.text = "Fecha de Nacimiento: ${patient.getFormattedBirthDate()}"
             textViewPatientGender.text = "Género: ${patient.gender}"
 
 

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Report_Illness"
         tools:targetApi="31">
         <activity
+            android:name=".views.reported_case.ListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.reported_case.CreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.city.ListActivity"
             android:exported="false" />
         <activity
