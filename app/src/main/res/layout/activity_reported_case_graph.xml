@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título del gráfico -->
+        <TextView
+            android:id="@+id/textViewChartTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gráfica de Barras"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Subtítulo del gráfico -->
+        <TextView
+            android:id="@+id/textViewChartSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Casos reportados por año y por país"
+            android:textSize="16sp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Campo Año -->
+        <EditText
+            android:id="@+id/editTextYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese el Año"
+            android:inputType="number"
+            android:layout_marginTop="16dp" />
+
+        <!-- Spinner para País -->
+        <Spinner
+            android:id="@+id/spinnerCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <!-- Botón Ejecutar -->
+        <Button
+            android:id="@+id/buttonExecute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ejecutar"
+            android:layout_marginTop="16dp" />
+
+        <!-- Gráfico de Barras -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

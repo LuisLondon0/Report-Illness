@@ -60,6 +60,48 @@ object ReportedCaseHelper {
         return null
     }
 
+    fun getReportedCasesByYearAndCountry(year: Int, countryName: String, connectionDB: ConnectionDB): List<Map<String, Any>> {
+        val query = """
+        SELECT 
+            YEAR(reported_date) AS Year,
+            MONTH(reported_date) AS Month,
+            COUNT(*) AS TotalCases
+        FROM 
+            dbo.reported_case rc
+        JOIN 
+            dbo.city c ON rc.city_id = c.id
+        JOIN 
+            dbo.country co ON c.country_id = co.id
+        WHERE 
+            co.name = ?
+            AND YEAR(reported_date) = ?
+        GROUP BY 
+            YEAR(reported_date),
+            MONTH(reported_date)
+        ORDER BY 
+            YEAR(reported_date),
+            MONTH(reported_date)
+    """.trimIndent()
+
+        val resultSet = DatabaseHelper.executeQuery(query, connectionDB, countryName, year)
+        val reportedCases = mutableListOf<Map<String, Any>>()
+
+        resultSet?.use { rs ->
+            while (rs.next()) {
+                val month = rs.getInt("Month")
+                val totalCases = rs.getInt("TotalCases")
+                val map = mapOf(
+                    "Year" to year,
+                    "Month" to month,
+                    "TotalCases" to totalCases
+                )
+                reportedCases.add(map)
+            }
+        }
+
+        return reportedCases
+    }
+
     private fun mapResultSetToReportedCase(resultSet: ResultSet): ReportedCase {
         return ReportedCase(
             resultSet.getInt("id"),

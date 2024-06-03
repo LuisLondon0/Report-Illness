@@ -11,6 +11,7 @@ import com.example.report_illness.views.disease.ListActivity as DiseaseListActiv
 import com.example.report_illness.views.country.ListActivity as CountryListActivity
 import com.example.report_illness.views.city.ListActivity as CityListActivity
 import com.example.report_illness.views.reported_case.ListActivity as ReportedCaseListActivity
+import com.example.report_illness.views.reported_case.GraphActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonGraphs = findViewById<Button>(R.id.buttonGraphs)
         buttonGraphs.setOnClickListener {
-            val intent = Intent(this@MainActivity, CityListActivity::class.java)
+            val intent = Intent(this@MainActivity, GraphActivity::class.java)
             startActivity(intent)
         }
 
