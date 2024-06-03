@@ -96,12 +96,16 @@ class GraphActivity : AppCompatActivity() {
     private fun updateBarChart(reportedCases: List<Map<String, Any>>) {
         val entries = mutableListOf<BarEntry>()
         val labels = mutableListOf<String>()
+        var maxValue = 0
 
         reportedCases.forEachIndexed { index, map ->
             val month = map["Month"] as Int
             val totalCases = map["TotalCases"] as Int
             entries.add(BarEntry(index.toFloat(), totalCases.toFloat()))
             labels.add(getMonthName(month))
+            if (totalCases > maxValue) {
+                maxValue = totalCases
+            }
         }
 
         val dataSet = BarDataSet(entries, "Total Cases")
@@ -135,6 +139,10 @@ class GraphActivity : AppCompatActivity() {
         // Customize left axis
         val leftAxis = barChart.axisLeft
         leftAxis.setDrawGridLines(false)
+        leftAxis.axisMinimum = 0f // Ensure the Y-axis starts from 0
+        leftAxis.axisMaximum = maxValue * 1.1f // Ensure the Y-axis goes slightly above the maximum value
+        leftAxis.granularity = (maxValue * 0.1f).coerceAtLeast(1f) // Set the granularity to 10% of the maximum value
+        leftAxis.isGranularityEnabled = true
 
         // Customize right axis
         val rightAxis = barChart.axisRight
