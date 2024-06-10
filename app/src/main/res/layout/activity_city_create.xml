@@ -1,75 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- Campo ID -->
-        <EditText
-            android:id="@+id/editTextId"
+        <!-- Título con fondo azul -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingresar ID"
-            android:inputType="number" />
+            android:background="@color/bluePrimary"
+            android:padding="10dp">
 
-        <!-- Campo Nombre -->
-        <EditText
-            android:id="@+id/editTextNombre"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar  Ciudad"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="#25707070" />
+
+        <!-- Campos de entrada -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_phone"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingresar Nombre"
-            android:inputType="textPersonName"
-            android:layout_marginTop="16dp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
 
-        <!-- Campo Latitud -->
-        <EditText
-            android:id="@+id/editTextLatitud"
+            app:startIconDrawable="@drawable/ic_cedula"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp"
+                android:id="@+id/editTextId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar ID"
+                android:inputType="number"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_name"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingresar Latitud"
-            android:inputType="numberSigned|numberDecimal"
-            android:layout_marginTop="16dp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="@color/orange">
 
-        <!-- Campo Longitud -->
-        <EditText
-            android:id="@+id/editTextLongitud"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar Nombre"
+                android:inputType="textPersonName"
+                android:layout_marginTop="16dp"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_lastname"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingresar Longitud"
-            android:inputType="numberSigned|numberDecimal"
-            android:layout_marginTop="16dp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
 
-        <!-- Campo Country ID -->
+            app:startIconDrawable="@drawable/ic_apellido"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLatitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar Latitud"
+                android:inputType="numberSigned|numberDecimal"
+                android:layout_marginTop="16dp"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_email"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+
+            app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="@color/orange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLongitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar Longitud"
+                android:inputType="numberSigned|numberDecimal"
+                android:layout_marginTop="16dp"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
         <Spinner
             android:id="@+id/spinnerPaisId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:paddingStart="48dp"
+            android:paddingEnd="16dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_Genero"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tx_Genero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Enviar" />
-
-            <Button
-                android:id="@+id/buttonCancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cancelar" />
-        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSubmit"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_above="@+id/buttonCancel"
+        android:layout_marginStart="86dp"
+        android:layout_marginBottom="-72dp"
+        android:layout_toEndOf="@+id/buttonCancel"
+        android:backgroundTint="@color/blueAccent"
+        android:onClick="btnSubmit"
+        android:text="@string/submit1"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCancel"
+        android:layout_width="139dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="87dp"
+        android:backgroundTint="@color/blueAccent"
+        android:onClick="btnSubmit"
+        android:text="@string/submit2"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+</RelativeLayout>
