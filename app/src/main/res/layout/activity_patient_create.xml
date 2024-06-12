@@ -42,7 +42,7 @@
             android:layout_marginEnd="24dp"
 
             app:startIconDrawable="@drawable/ic_cedula"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
 
@@ -67,7 +67,7 @@
             android:layout_marginEnd="24dp"
 
             app:startIconDrawable="@drawable/ic_baseline_person_24"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextNombre"
@@ -90,7 +90,7 @@
             android:layout_marginEnd="24dp"
 
             app:startIconDrawable="@drawable/ic_apellido"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextApellidos"
@@ -112,8 +112,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
 
-            app:startIconDrawable="@drawable/ic_email"
-            app:startIconTint="@color/orange">
+            app:startIconDrawable="@drawable/ic_mapa"
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextContacto"
@@ -159,7 +159,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             app:startIconDrawable="@drawable/ic_fechanacimiento"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextCumpleanos"
@@ -195,8 +195,8 @@
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="92dp"
         android:backgroundTint="@color/blueAccent"
         android:onClick="btnSubmit"
         android:text="@string/submit2"

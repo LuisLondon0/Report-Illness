@@ -42,7 +42,7 @@
             android:layout_marginEnd="24dp"
 
             app:startIconDrawable="@drawable/ic_cedula"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
 
@@ -66,7 +66,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             app:startIconDrawable="@drawable/ic_baseline_person_24"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextNombre"
@@ -88,8 +88,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
 
-            app:startIconDrawable="@drawable/ic_apellido"
-            app:startIconTint="@color/orange">
+            app:startIconDrawable="@drawable/ic_latitud"
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLatitud"
@@ -111,8 +111,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
 
-            app:startIconDrawable="@drawable/ic_email"
-            app:startIconTint="@color/orange">
+            app:startIconDrawable="@drawable/ic_longitude"
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLongitud"

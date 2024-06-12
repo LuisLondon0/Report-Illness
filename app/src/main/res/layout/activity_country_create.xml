@@ -42,7 +42,7 @@
             android:layout_marginEnd="24dp"
 
             app:startIconDrawable="@drawable/ic_cedula"
-            app:startIconTint="@color/orange">
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
 
@@ -65,8 +65,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            app:startIconDrawable="@drawable/ic_baseline_person_24"
-            app:startIconTint="@color/orange">
+            app:startIconDrawable="@drawable/ic_latitud"
+            app:startIconTint="@color/verdeturquesa">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextNombre"
