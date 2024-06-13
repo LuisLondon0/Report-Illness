@@ -1,8 +1,6 @@
 package com.example.report_illness.views.disease
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -14,98 +12,143 @@ import com.example.report_illness.R
 import com.example.report_illness.database.ConnectionDB
 import com.example.report_illness.helpers.DiseaseHelper
 import com.example.report_illness.models.Disease
-import java.util.Calendar
 
 class CreateActivity : AppCompatActivity() {
+
+    private lateinit var editTextId: EditText
+    private lateinit var editTextNombre: EditText
+    private lateinit var editTextDescripcion: EditText
+    private lateinit var editTextUrgencia: EditText
+    private lateinit var checkBoxVacuna: CheckBox
+    private lateinit var checkBoxTratamiento: CheckBox
+    private lateinit var buttonSubmit: Button
+    private lateinit var buttonCancel: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disease_create)
 
         ConnectionDB.dbConn()
 
+        initializeViews()
         setupSubmitButton()
+        setupCancelButton()
 
-        val buttonCancel = findViewById<Button>(R.id.buttonCancel)
+        if (!isNewDisease()) {
+            loadDiseaseData()
+        }
+    }
+
+    private fun initializeViews() {
+        editTextId = findViewById(R.id.editTextId)
+        editTextNombre = findViewById(R.id.editTextNombre)
+        editTextDescripcion = findViewById(R.id.editTextDescripcion)
+        editTextUrgencia = findViewById(R.id.editTextUrgencia)
+        checkBoxVacuna = findViewById(R.id.checkBoxVacuna)
+        checkBoxTratamiento = findViewById(R.id.checkBoxTratamiento)
+        buttonSubmit = findViewById(R.id.buttonSubmit)
+        buttonCancel = findViewById(R.id.buttonCancel)
+    }
+
+    private fun setupCancelButton() {
         buttonCancel.setOnClickListener {
             finish()
         }
+    }
 
-        val isNewDisease = intent.getBooleanExtra("isNewDisease", true)
+    private fun isNewDisease(): Boolean {
+        return intent.getBooleanExtra("isNewDisease", true)
+    }
 
-        if (!isNewDisease) {
-            val editTextId = findViewById<EditText>(R.id.editTextId)
-            editTextId.isEnabled = false
+    private fun loadDiseaseData() {
+        editTextId.isEnabled = false
+        val diseaseId = intent.getIntExtra("diseaseId", 0)
+        val disease = DiseaseHelper.getDiseaseById(diseaseId, ConnectionDB)
 
-            val diseaseId = intent.getIntExtra("diseaseId", 0)
-            val disease = DiseaseHelper.getDiseaseById(diseaseId, ConnectionDB)
+        if (disease != null) {
+            populateDiseaseFields(disease)
+        } else {
+            Toast.makeText(this, "Enfermedad no encontrada", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-            // Llenar los campos con la información de la enfermedad
-            if (disease != null) {
-                editTextId.setText(disease.id.toString())
-                findViewById<EditText>(R.id.editTextNombre).setText(disease.name)
-                findViewById<EditText>(R.id.editTextDescripcion).setText(disease.description)
-                findViewById<EditText>(R.id.editTextUrgencia).setText(disease.urgency)
-                findViewById<CheckBox>(R.id.checkBoxVacuna).isChecked = disease.vaccine
-                findViewById<CheckBox>(R.id.checkBoxTratamiento).isChecked = disease.treatment
-            } else {
-                Toast.makeText(this, "Enfermedad no encontrada", Toast.LENGTH_SHORT).show()
+    private fun populateDiseaseFields(disease: Disease) {
+        editTextId.setText(disease.id.toString())
+        editTextNombre.setText(disease.name)
+        editTextDescripcion.setText(disease.description)
+        editTextUrgencia.setText(disease.urgency)
+        checkBoxVacuna.isChecked = disease.vaccine
+        checkBoxTratamiento.isChecked = disease.treatment
+    }
+
+    private fun setupSubmitButton() {
+        buttonSubmit.setOnClickListener {
+            if (validateFields()) {
+                val disease = createDiseaseFromFields()
+                if (DiseaseHelper.getDiseaseById(disease.id, ConnectionDB) != null) {
+                    updateDisease(disease)
+                } else {
+                    insertDisease(disease)
+                }
             }
         }
     }
 
-    @SuppressLint("DefaultLocale")
-    private fun setupSubmitButton() {
-        val editTextId: EditText = findViewById(R.id.editTextId)
-        val editTextNombre: EditText = findViewById(R.id.editTextNombre)
-        val editTextDescripcion: EditText = findViewById(R.id.editTextDescripcion)
-        val editTextUrgencia: EditText = findViewById(R.id.editTextUrgencia)
-        val checkBoxVacuna: CheckBox = findViewById(R.id.checkBoxVacuna)
-        val checkBoxTratamiento: CheckBox = findViewById(R.id.checkBoxTratamiento)
-        val buttonSubmit: Button = findViewById(R.id.buttonSubmit)
+    private fun validateFields(): Boolean {
+        val id = editTextId.text.toString().toIntOrNull()
+        val nombre = editTextNombre.text.toString()
+        val descripcion = editTextDescripcion.text.toString()
+        val urgencia = editTextUrgencia.text.toString()
 
-        buttonSubmit.setOnClickListener {
-            val id = editTextId.text.toString().toIntOrNull()
-            val nombre = editTextNombre.text.toString()
-            val descripcion = editTextDescripcion.text.toString()
-            val urgencia = editTextUrgencia.text.toString()
-            val tieneVacuna = checkBoxVacuna.isChecked
-            val tieneTratamiento = checkBoxTratamiento.isChecked
-
-            // Validar campos
-            if (id == null) {
-                Toast.makeText(this, "Por favor, ingrese un ID válido.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+        return when {
+            id == null -> {
+                showToast("Por favor, ingrese un ID válido.")
+                false
             }
-            if (nombre.isEmpty() || descripcion.isEmpty() || urgencia.isEmpty()) {
-                Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            nombre.isEmpty() || descripcion.isEmpty() || urgencia.isEmpty() -> {
+                showToast("Por favor, complete todos los campos.")
+                false
             }
-
-            // Crear objeto Disease con los datos ingresados
-            val disease = Disease(id, nombre, descripcion, urgencia, tieneVacuna, tieneTratamiento)
-
-            // Insertar o actualizar la enfermedad según si ya existe o no
-            if (DiseaseHelper.getDiseaseById(id, ConnectionDB) != null) {
-                if (DiseaseHelper.updateDisease(disease, ConnectionDB)) {
-                    Toast.makeText(this, "Enfermedad actualizada correctamente", Toast.LENGTH_SHORT).show()
-                    val resultIntent = Intent()
-                    resultIntent.putExtra("actualizado", true)
-                    setResult(Activity.RESULT_OK, resultIntent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Error al actualizar la enfermedad", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                if (DiseaseHelper.insertDisease(disease, ConnectionDB)) {
-                    Toast.makeText(this, "Enfermedad insertada correctamente", Toast.LENGTH_SHORT).show()
-                    val resultIntent = Intent()
-                    resultIntent.putExtra("creado", true)
-                    setResult(Activity.RESULT_OK, resultIntent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Error al insertar la enfermedad", Toast.LENGTH_SHORT).show()
-                }
-            }
+            else -> true
         }
+    }
+
+    private fun createDiseaseFromFields(): Disease {
+        val id = editTextId.text.toString().toInt()
+        val nombre = editTextNombre.text.toString()
+        val descripcion = editTextDescripcion.text.toString()
+        val urgencia = editTextUrgencia.text.toString()
+        val tieneVacuna = checkBoxVacuna.isChecked
+        val tieneTratamiento = checkBoxTratamiento.isChecked
+        return Disease(id, nombre, descripcion, urgencia, tieneVacuna, tieneTratamiento)
+    }
+
+    private fun updateDisease(disease: Disease) {
+        if (DiseaseHelper.updateDisease(disease, ConnectionDB)) {
+            showToast("Enfermedad actualizada correctamente")
+            setResultAndFinish("actualizado")
+        } else {
+            showToast("Error al actualizar la enfermedad")
+        }
+    }
+
+    private fun insertDisease(disease: Disease) {
+        if (DiseaseHelper.insertDisease(disease, ConnectionDB)) {
+            showToast("Enfermedad insertada correctamente")
+            setResultAndFinish("creado")
+        } else {
+            showToast("Error al insertar la enfermedad")
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setResultAndFinish(action: String) {
+        val resultIntent = Intent()
+        resultIntent.putExtra(action, true)
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 }
